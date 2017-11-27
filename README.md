@@ -13,12 +13,12 @@ Below is an example of using the PowerShell module to create Self Signed CA Cert
 ```
 import-module .\New-SelfSignedCertificateEx.ps1
 
-New-SelfsignedCertificateEx -FriendlyName "**Test Root CA**" -Subject "CN=Test Root CA, OU=Test, O=Company, L=IN, S=IN, C=IN" `
+New-SelfsignedCertificateEx -FriendlyName "Test Root CA" -Subject "CN=Test Root CA, OU=Test, O=Company, L=IN, S=IN, C=IN" `
 -IsCA $true -StoreLocation "LocalMachine" -NotAfter $([datetime]::now.AddYears(10)) -Exportable -SignatureAlgorithm SHA256
 
 New-SelfsignedCertificateEx -FriendlyName "www.domain.com" -Subject "CN=www.domain.com" -SAN "www.domain.com","*.domain2.com" `
 -EKU "Server Authentication" -KeyUsage "KeyEncipherment, DigitalSignature" -SignatureAlgorithm SHA256 `
--StoreLocation "LocalMachine" -NotAfter $([datetime]::now.AddYears(10)) -IssuerCertFriendlyName "**Test Root CA**" -Exportable
+-StoreLocation "LocalMachine" -NotAfter $([datetime]::now.AddYears(10)) -IssuerCertFriendlyName "Test Root CA" -Exportable
 ```
 As shown in the above example, "IssuerCertFriendlyName" parameter of creating certificate and "FriendlyName" parameter of creating CA certificate must match.
 
